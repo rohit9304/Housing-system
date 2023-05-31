@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Housing_system.Controllers
 {
-    [ApiController]
-    [Route("api/users")]
-    public class UserController : ControllerBase
+
+    public class UserController : BaseController
     {
         private readonly IUserService _userService;
 

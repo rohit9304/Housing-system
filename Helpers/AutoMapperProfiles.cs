@@ -8,7 +8,7 @@ namespace Housing_system.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<Property, PropertyDto>();
+            CreateMap<Property, PropertyDto>().ReverseMap();
         }
     }
 }

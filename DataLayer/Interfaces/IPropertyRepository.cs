@@ -2,8 +2,7 @@
 
 namespace Housing_system.DataLayer.Interfaces
 {
-    public interface IPropertyRepository
-    {
+
         public interface IPropertyRepository
         {
             IEnumerable<Property> GetAllProperties();
@@ -11,6 +10,5 @@ namespace Housing_system.DataLayer.Interfaces
             Property CreateProperty(Property property);
             void DeleteProperty(Property property);
         }
-    }
 
 }
