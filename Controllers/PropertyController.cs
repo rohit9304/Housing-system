@@ -2,12 +2,16 @@
 using Housing_system.BussinessLayer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Housing_system.Controllers
 {
 
-    public class PropertyController : BaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    [EnableCors("AllowOrigin")]
+    public class PropertyController : ControllerBase
     {
         private readonly IPropertyService _propertyService;
 
@@ -35,14 +39,10 @@ namespace Housing_system.Controllers
         }
 
         [HttpPost("add")]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult CreateProperty(PropertyDto propertyDto)
         {
-            var userid = GetUserId();
-            _propertyService.CreateProperty(propertyDto,userid);
+            _propertyService.CreateProperty(propertyDto);
             return StatusCode(201);
-
-            // return CreatedAtAction(nameof(GetPropertyById), new { id = createdProperty.Id }, createdProperty);
         }
 
         [HttpDelete("{id}")]

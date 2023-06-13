@@ -6,7 +6,7 @@ namespace Housing_system.BussinessLayer.Services
     {
         IEnumerable<PropertyDto> GetAllProperties();
         PropertyDto GetPropertyById(int id);
-        PropertyDto CreateProperty(PropertyDto propertyDto,int userid);
+        PropertyDto CreateProperty(PropertyDto propertyDto);
         void DeleteProperty(int id);
     }
 }

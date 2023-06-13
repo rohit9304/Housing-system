@@ -1,0 +1,32 @@
+.property-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #2196F3, #ffffff);
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .property-image {
+    text-align: center;
+  }
+  
+  .property-image img {
+    max-width: 300px;
+    max-height: 300px;
+  }
+  
+  .property-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .property-info h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .property-info p {
+    margin: 5px 0;
+  }
+  

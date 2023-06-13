@@ -3,10 +3,12 @@ using Housing_system.BussinessLayer.DTO;
 using Housing_system.DataLayer.Interfaces;
 using Housing_system.DataLayer.Models;
 using Housing_system.DataLayer.Repositories;
+using System;
 using System.Security.Claims;
+using System.Collections.Generic;
 
 namespace Housing_system.BussinessLayer.Services
-{ 
+{
     public class PropertyService : IPropertyService
     {
         private readonly IPropertyRepository _propertyRepository;
@@ -20,50 +22,76 @@ namespace Housing_system.BussinessLayer.Services
 
         public IEnumerable<PropertyDto> GetAllProperties()
         {
-            var properties = _propertyRepository.GetAllProperties();
-            var propertyDtos = _mapper.Map<IEnumerable<PropertyDto>>(properties);
-            return propertyDtos;
+            try
+            {
+                var properties = _propertyRepository.GetAllProperties();
+                var propertyDtos = _mapper.Map<IEnumerable<PropertyDto>>(properties);
+                return propertyDtos;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while retrieving properties.", ex);
+            }
         }
 
         public PropertyDto GetPropertyById(int id)
         {
-            var property = _propertyRepository.GetPropertyById(id);
-            if (property == null)
+            try
             {
-                return null;
+                var property = _propertyRepository.GetPropertyById(id);
+                if (property == null)
+                {
+                    return null;
+                }
+
+                var propertyDto = new PropertyDto
+                {
+                    Id = property.Id,
+                    Address = property.Address,
+                    Price = property.Price,
+                    Description = property.Description,
+                    Bhk = property.Bhk,
+                    CityId = property.CityId,
+                    UserId = property.UserId
+                };
+                return propertyDto;
             }
-            var propertyDto = new PropertyDto
+            catch (Exception ex)
             {
-               // Id = property.Id,
-                Address = property.Address,
-                Price = property.Price,
-                Description = property.Description,
-                Bhk = property.Bhk,
-                CityId = property.CityId,
-               // UserId = property.UserId
-            };
-            return propertyDto;
+                throw new ApplicationException("An error occurred while retrieving the property.", ex);
+            }
         }
 
-        public PropertyDto CreateProperty(PropertyDto propertyDto, int userid)
+        public PropertyDto CreateProperty(PropertyDto propertyDto)
         {
-            var property = _mapper.Map<Property>(propertyDto);
-            property.UserId = userid;
-            var createdProperty = _propertyRepository.CreateProperty(property);
-            var createdPropertyDto = _mapper.Map<PropertyDto>(createdProperty);
-            
-            return createdPropertyDto;
+            try
+            {
+                var property = _mapper.Map<Property>(propertyDto);
+                var createdProperty = _propertyRepository.CreateProperty(property);
+                var createdPropertyDto = _mapper.Map<PropertyDto>(createdProperty);
+                return createdPropertyDto;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while creating the property.", ex);
+            }
         }
 
         public void DeleteProperty(int id)
         {
-            var property = _propertyRepository.GetPropertyById(id);
-            if (property == null)
+            try
             {
-                throw new ApplicationException("Property not found.");
+                var property = _propertyRepository.GetPropertyById(id);
+                if (property == null)
+                {
+                    throw new ApplicationException("Property not found.");
+                }
+                _propertyRepository.DeleteProperty(property);
             }
-            _propertyRepository.DeleteProperty(property);
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while deleting the property.", ex);
+            }
         }
     }
-
 }

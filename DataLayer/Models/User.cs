@@ -8,8 +8,6 @@
         public string Email { get; set; } = null!;
 
         public string Password { get; set; } = null!;
-
-        // Navigation property
         public ICollection<Property> Properties { get; set; } = null!;
     }
 }

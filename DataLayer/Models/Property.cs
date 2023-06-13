@@ -7,11 +7,7 @@
         public decimal Price { get; set; }
         public string Description { get; set; } = null!;
         public int Bhk { get; set; }
-
-        // Foreign key
         public int CityId { get; set; }
-
-        // Navigation properties
         public City City { get; set; } = null!;
         public int UserId { get; set; }
         public User User { get; set; } = null!;

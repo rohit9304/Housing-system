@@ -1,0 +1,45 @@
+.property-list-container {
+    padding-top: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .add-property {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .property-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #cccccc;
+    padding: 10px;
+  }
+  
+  .property-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .property-details {
+    margin-top: 10px;
+    text-align: center;
+  }
+  

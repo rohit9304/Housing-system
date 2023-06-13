@@ -1,11 +1,14 @@
 ﻿using Housing_system.BussinessLayer.DTO;
 using Housing_system.BussinessLayer.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Housing_system.Controllers
 {
-
-    public class UserController : BaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    [EnableCors("AllowOrigin")]
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
